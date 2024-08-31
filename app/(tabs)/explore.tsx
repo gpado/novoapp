@@ -3,10 +3,9 @@ import { View, StyleSheet, Dimensions, ActivityIndicator, Text } from 'react-nat
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { ThemedText } from '@/components/ThemedText';
-import { LocationObject } from 'expo-location'; // Ensure that LocationObject is correctly imported
+import { LocationObject } from 'expo-location';
 
 export default function TabTwoScreen() {
-  // Explicitly define the type for location and errorMsg
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -31,28 +30,35 @@ export default function TabTwoScreen() {
     })();
   }, []);
 
+  const renderContent = () => {
+    if (loading) {
+      return <ActivityIndicator size="large" color="#0000ff" />;
+    }
+
+    if (location) {
+      return (
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={styles.mapStyle}
+          initialRegion={{
+            latitude: -23.5505,
+            longitude: -46.6333,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      );
+    }
+
+    return <Text>{errorMsg || 'Unable to display the map'}</Text>;
+  };
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
         <ThemedText type="title" style={styles.centeredTitle}>MobCidade</ThemedText>
       </View>
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : location ? (
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.mapStyle}
-          initialRegion={{
-            latitude: -23.5505,  // Latitude de São Paulo
-            longitude: -46.6333, // Longitude de São Paulo
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-        
-          }}
-        />
-      ) : (
-        <Text>{errorMsg || 'Unable to display the map'}</Text> // Using Text instead of ThemedText for simplicity
-      )}
+      {renderContent()}
     </View>
   );
 }
