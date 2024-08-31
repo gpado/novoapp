@@ -12,7 +12,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
+        headerShown: false,  // Esta linha garante que o cabeçalho não será mostrado
       }}>
       <Tabs.Screen
         name="index"
