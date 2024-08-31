@@ -1,9 +1,9 @@
-import { StyleSheet, View, Text } from 'react-native';  // Importar Text
+import { StyleSheet, View, Text, ScrollView, Image } from 'react-native'; // Importar Image e ScrollView
 import { ThemedText } from '@/components/ThemedText';
 import { WebView } from 'react-native-webview';
 
 export default function HomeScreen() {
-  const youtubeVideoId = "D05umUHt0Zw"; // ID do vídeo do YouTube
+  const youtubeVideoId = "D05umUHt0Zw";
   const youtubeURL = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&controls=0&loop=1&playlist=${youtubeVideoId}`;
 
   return (
@@ -24,13 +24,27 @@ export default function HomeScreen() {
       <View style={styles.transportTitleContainer}>
         <Text style={styles.transportTitle}>Principais Transportes</Text>
       </View>
+      <ScrollView horizontal={true} style={styles.transportCardContainer}>
+        <View style={styles.card}>
+        <Image source={require('../../assets/images/bus.png')} style={styles.cardImage} />
+        <Text style={styles.cardTitle}>Ônibus</Text>
+        </View>
+        <View style={styles.card}>
+        <Image source={require('../../assets/images/metro.png')} style={styles.cardImage} />
+        <Text style={styles.cardTitle}>Metrô</Text>
+        </View>
+        <View style={styles.card}>
+        <Image source={require('../../assets/images/taxi.png')} style={styles.cardImage} />
+        <Text style={styles.cardTitle}>Uber</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,  // Garante que o container principal preencha a tela
+    flex: 1,
   },
   titleContainer: {
     alignItems: 'center',
@@ -47,15 +61,39 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   container: {
-    backgroundColor: '#5DB075',  // Cor de fundo verde
-    padding: 20,  // Espaçamento interno
+    backgroundColor: '#5DB075',
+    padding: 20,
   },
   transportTitleContainer: {
-    padding: 20,
+    paddingLeft: 20,
+    paddingTop: 20,
   },
   transportTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#000',
+  },
+  transportCardContainer: {
+    padding: 10,
+    height: 100,
+  },
+  card: {
+    width: 100,
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    elevation: 3,
+  },
+  cardImage: {
+    width: 50,
+    height: 50,
+    marginBottom: 10,
+  },
+  cardTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });
