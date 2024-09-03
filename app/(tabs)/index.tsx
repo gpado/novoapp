@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+import { Link } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { WebView } from 'react-native-webview';
 
@@ -26,10 +27,10 @@ export default function HomeScreen() {
         <Text style={styles.transportTitle}>Principais Transportes</Text>
       </View>
       <ScrollView horizontal={true} style={styles.transportCardContainer}>
-        <View style={styles.card}>
+        <Link href="/onibus" style={styles.card}>
           <Image source={require('../../assets/images/bus.png')} style={styles.cardImage} />
           <Text style={styles.cardTitle}>Ônibus</Text>
-        </View>
+        </Link>
         <View style={styles.card}>
           <Image source={require('../../assets/images/metro.png')} style={styles.cardImage} />
           <Text style={styles.cardTitle}>Metrô</Text>
@@ -51,15 +52,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    marginTop: 20
+    marginTop: 20,
   },
   centeredTitle: {
     fontSize: 24,
     fontWeight: 'bold',
   },
   videoContainer: {
-    height: 180, // Altura reduzida
-    width: 370, // Largura reduzida
+    height: 180,
+    width: 370,
   },
   container: {
     backgroundColor: '#5DB075',
