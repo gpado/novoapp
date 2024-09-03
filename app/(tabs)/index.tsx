@@ -27,9 +27,11 @@ export default function HomeScreen() {
         <Text style={styles.transportTitle}>Principais Transportes</Text>
       </View>
       <ScrollView horizontal={true} style={styles.transportCardContainer}>
-        <Link href="/onibus" style={styles.card}>
-          <Image source={require('../../assets/images/bus.png')} style={styles.cardImage} />
-          <Text style={styles.cardTitle}>Ônibus</Text>
+        <Link href="/onibus">
+          <View style={styles.card}>
+            <Image source={require('../../assets/images/bus.png')} style={styles.cardImage} />
+            <Text style={styles.cardTitle}>Ônibus</Text>
+          </View>
         </Link>
         <View style={styles.card}>
           <Image source={require('../../assets/images/metro.png')} style={styles.cardImage} />
