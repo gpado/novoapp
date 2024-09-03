@@ -1,10 +1,11 @@
-import { StyleSheet, View, Text, ScrollView, Image } from 'react-native'; // Importar Image e ScrollView
+import React from 'react';
+import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { WebView } from 'react-native-webview';
 
 export default function HomeScreen() {
   const youtubeVideoId = "D05umUHt0Zw";
-  const youtubeURL = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&controls=0&loop=1&playlist=${youtubeVideoId}`;
+  const youtubeURL = `https://www.youtube.com/embed/${youtubeVideoId}`;
 
   return (
     <View style={styles.mainContainer}>
@@ -15,7 +16,7 @@ export default function HomeScreen() {
         <View style={styles.videoContainer}>
           <WebView
             source={{ uri: youtubeURL }}
-            style={{ flex: 1 }}
+            style={{ width: 370, height: 180 }} 
             allowsFullscreenVideo={true}
             javaScriptEnabled={true}
           />
@@ -26,16 +27,16 @@ export default function HomeScreen() {
       </View>
       <ScrollView horizontal={true} style={styles.transportCardContainer}>
         <View style={styles.card}>
-        <Image source={require('../../assets/images/bus.png')} style={styles.cardImage} />
-        <Text style={styles.cardTitle}>Ônibus</Text>
+          <Image source={require('../../assets/images/bus.png')} style={styles.cardImage} />
+          <Text style={styles.cardTitle}>Ônibus</Text>
         </View>
         <View style={styles.card}>
-        <Image source={require('../../assets/images/metro.png')} style={styles.cardImage} />
-        <Text style={styles.cardTitle}>Metrô</Text>
+          <Image source={require('../../assets/images/metro.png')} style={styles.cardImage} />
+          <Text style={styles.cardTitle}>Metrô</Text>
         </View>
         <View style={styles.card}>
-        <Image source={require('../../assets/images/taxi.png')} style={styles.cardImage} />
-        <Text style={styles.cardTitle}>Uber</Text>
+          <Image source={require('../../assets/images/taxi.png')} style={styles.cardImage} />
+          <Text style={styles.cardTitle}>Uber</Text>
         </View>
       </ScrollView>
     </View>
@@ -57,8 +58,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   videoContainer: {
-    height: 200,
-    width: '100%',
+    height: 180, // Altura reduzida
+    width: 370, // Largura reduzida
   },
   container: {
     backgroundColor: '#5DB075',
