@@ -8,11 +8,21 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "jest --ci --reporters=default --reporters=jest-junit",
+    "test": "jest --ci",
     "lint": "expo lint"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "./reports/junit",
+          "outputName": "test-results.xml"
+        }
+      ]
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
@@ -55,9 +65,5 @@
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
   },
-  "private": true,
-  "jest-junit": {
-    "outputDirectory": "./reports/junit",
-    "outputName": "test-results.xml"
-  }
+  "private": true
 }
